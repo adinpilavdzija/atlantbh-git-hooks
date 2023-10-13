@@ -1,0 +1,13 @@
+#!/bin/sh
+
+regex="^(feature|fix|refactor|wip):.{1,50}$"
+
+commit_msg=$(cat "$1")
+
+if ! [[ $commit_msg =~ $regex ]]; then
+  echo "Error: Invalid format! Valid format is '<type>: <description> (max 50 characters)'."
+  exit 1
+fi
+
+exit 0
+
