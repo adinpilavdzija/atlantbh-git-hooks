@@ -1,5 +1,5 @@
 # Task
-[Link](https://www.atlantbh.com/git-hooks/)
+[Git Hooks - Atlantbh](https://www.atlantbh.com/git-hooks/)
 
 Imagine a scenario where you work on a collaborative project using git for versioning files. To maintain clarity and organization within the project, you want to enforce a standardized commit message format.
 
@@ -25,8 +25,22 @@ Hint: use `commit-msg` hook.
   
 
 # Solution
-
 Bash script for enforcing a standardized commit message format.
+
+```
+#!/bin/sh
+
+regex="^(feature|fix|refactor|wip):.{1,50}$"
+
+commit_msg=$(cat "$1")
+
+if ! [[ $commit_msg =~ $regex ]]; then
+  echo "Error: Invalid format! Valid format is '<type>: <description> (max 50 characters)'."
+  exit 1
+fi
+
+exit 0
+```
 
 Variable 'regex' declares Regular Expression rule. It is used for comparison with 'commit_msg'.
 
